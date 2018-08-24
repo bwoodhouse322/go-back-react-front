@@ -1,0 +1,2 @@
+backend/app/vendor/*
+frontend/app/node_modules/*
