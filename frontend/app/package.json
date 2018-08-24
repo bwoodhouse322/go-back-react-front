@@ -1,0 +1,20 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "A frontend to display todo list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "bwoodhouse322/go-back-react-front/tree/master/frontend"
+  },
+  "keywords": [
+    "todo",
+    "react",
+    "golang-back"
+  ],
+  "author": "bwoodhouse",
+  "license": "ISC"
+}
