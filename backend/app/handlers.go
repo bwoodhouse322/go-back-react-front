@@ -9,11 +9,13 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprintln(w, "Welcome!")
 
 }
 
 func ToDoIndex(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	todos := Todos{
 		Todo{Name: "pod autoscaling"},
 		Todo{Name: "replace Shashi"},
@@ -26,6 +28,7 @@ func ToDoIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func ToDoShow(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	vars := mux.Vars(r)
 	todoID := vars["todoId"]
 	fmt.Fprintln(w, "Todo show:", todoID)

@@ -10,7 +10,8 @@ func main() {
 	port := ":8080"
 	router := NewRouter()
 
-	fmt.Println("listening on 127.0.0.1", port)
+	fmt.Println("listening on 127.0.0.1" + port)
+
 	log.Fatal(http.ListenAndServe(port, router))
 
 }

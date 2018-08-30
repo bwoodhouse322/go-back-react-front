@@ -12,8 +12,9 @@ class ToDoList extends Component {
   }
 
   componentDidMount(){
-    axios.get("$BACKEND_URL")
-    .then(toDoJson => console.log(toDoJson))
+    axios('http://127.0.0.1:8080/todos').then(response => console.log(response.data))
+
+
   }
 
 
