@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './ToDoList.css';
 import axios from 'axios'
 
@@ -12,7 +11,33 @@ class ToDoList extends Component {
   }
 
   componentDidMount(){
-    axios('http://127.0.0.1:8080/todos').then(response => console.log(response.data))
+    axios('http://127.0.0.1:8080/todos').then(response => {
+      
+      console.log(response.data);
+      let todos = response.data.map( (todo,index) => {
+        var duedate = new Date(todo.datedue);
+        console.log(todo.Completed)
+        return(
+
+          <div key={index}>
+            <h1>{todo.name}</h1> 
+            <h2>{`${duedate.getDay()} / ${duedate.getMonth()+1} / ${duedate.getFullYear()}`}</h2>
+            <h3>{todo.Completed}</h3>
+            <input
+            name="isCompleted"
+            type="checkbox"
+            checked={todo.Completed}
+             />
+
+          </div>
+
+        )
+
+      })
+      
+      this.setState({todos : todos})
+  
+  })
 
 
   }
@@ -21,14 +46,17 @@ class ToDoList extends Component {
 
   render() {
     return (
-      <div className="ToDoList">
-        <header className="ToDoList-header">
-          <img src={logo} className="ToDoList-logo" alt="logo" />
-          <h1 className="ToDoList-title">React Todo List</h1>
-        </header>
-        <p className="ToDoList-intro">
-          To get started, edit <code>src/ToDoList.js</code> and save to reload.
-        </p>
+      // <div className="ToDoList">
+      //   <header className="ToDoList-header">
+      //     <img src={logo} className="ToDoList-logo" alt="logo" />
+      //     <h1 className="ToDoList-title">React Todo List</h1>
+      //   </header>
+      //   <p className="ToDoList-intro">
+      //     To get started, edit <code>src/ToDoList.js</code> and save to reload.
+      //   </p>
+      // </div>
+      <div className="container">
+      {this.state.todos}
       </div>
     );
   }
