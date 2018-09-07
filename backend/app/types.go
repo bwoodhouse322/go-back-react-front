@@ -9,7 +9,7 @@ import (
 type Todo struct {
 	Name      string    `json:"name"`
 	Date      time.Time `json:"datedue"`
-	Completed bool      `"json:"completed"`
+	Completed bool      `json:"completed"`
 }
 
 //list of Todo

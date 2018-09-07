@@ -1,9 +1,14 @@
 #!/bin/bash
 #
-#USAGE : "REGISTRY-HOSTNAME=<docker-registry-host-name> REPO="repo" ./cd-pipeline.sh"
 #
-docker build -t todo-rest-api --file=docker/Dockerfile
+ACCOUNTNAME=bwoodhouse322
 
-docker push ${REGISTRY-HOSTNAME}/${REPO}/todo-rest-api
+docker build -t todo-rest-api --file=docker/Dockerfile .
+
+IMAGEID=$(docker images | grep todo-rest-api | awk '{print $3}')
+
+docker tag $IMAGEID $ACCOUNTNAME/todo-rest-api
+
+docker push $ACCOUNTNAME/todo-rest-api 
 
 
