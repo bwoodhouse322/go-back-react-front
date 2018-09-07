@@ -1,9 +1,27 @@
 #!/bin/bash
 #
-#USAGE : "REGISTRY-HOSTNAME=<docker-registry-host-name> REPO="repo" ./cd-pipeline.sh"
 #
-docker build -t todo-front-end --file=docker/Dockerfile
+ACCOUNTNAME=bwoodhouse322
+APPNAME=react-frontend
+minikube status
 
-docker push ${REGISTRY-HOSTNAME}/${REPO}/todo-front-end
+#If cluster isn't running, start cluster
+if [ $? -eq 1 ] ;
+then
+    minikube start  
+fi
 
 
+docker build -t $APPNAME --file=docker/Dockerfile .
+
+IMAGEID=$(docker images | grep todo-rest-api | awk '{print $3}'| tail -n 1)
+
+
+docker tag $IMAGEID $ACCOUNTNAME/$APPNAME
+
+docker push $ACCOUNTNAME/$APPNAME
+
+kubectl config use-context minikube
+
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml

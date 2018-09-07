@@ -13,20 +13,20 @@ class ToDoList extends Component {
   componentDidMount(){
     axios('http://127.0.0.1:8080/todos').then(response => {
       
-      console.log(response.data);
-      let todos = response.data.map( (todo,index) => {
-        var duedate = new Date(todo.datedue);
-        console.log(todo.Completed)
+       let todos = response.data.map( (todo,index) => {
+
+        let duedate = new Date(todo.datedue);
+
         return(
 
           <div key={index}>
             <h1>{todo.name}</h1> 
             <h2>{`${duedate.getDay()} / ${duedate.getMonth()+1} / ${duedate.getFullYear()}`}</h2>
-            <h3>{todo.Completed}</h3>
+            <h3>{todo.completed}</h3>
             <input
             name="isCompleted"
             type="checkbox"
-            checked={todo.Completed}
+            checked={todo.completed}
              />
 
           </div>
@@ -55,8 +55,21 @@ class ToDoList extends Component {
       //     To get started, edit <code>src/ToDoList.js</code> and save to reload.
       //   </p>
       // </div>
-      <div className="container">
-      {this.state.todos}
+
+      <div className="Container">
+      <header className="ToDoList-header">
+        <h1 clasName="ToDoList-title"> ToDo List</h1>
+      </header>
+      
+      <div className="ToDoList-toDoContainers">
+
+
+        <ul className="ToDoList-toDoList">
+         {this.state.todos}
+
+        </ul>
+      </div>
+      
       </div>
     );
   }
