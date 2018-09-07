@@ -11,7 +11,7 @@ class ToDoList extends Component {
   }
 
   componentDidMount(){
-    axios('http://127.0.0.1:8080/todos').then(response => {
+    axios('http://todo-rest-api-service.default.svc.cluster.local./todos').then(response => {
       
        let todos = response.data.map( (todo,index) => {
 
