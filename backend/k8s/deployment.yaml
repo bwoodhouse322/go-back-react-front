@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-rest-api-deployment
+  labels:
+    app: todo-rest-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todo-rest-api
+  template:
+    metadata:
+      labels:
+        app: todo-rest-api
+    spec:
+      containers:
+      - name: todo-rest-api
+        image: bwoodhouse322/todo-rest-api:latest
+        ports:
+          - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

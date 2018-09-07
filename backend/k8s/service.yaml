@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: todo-rest-api-service
+spec:
+  selector:
+    app: todo-rest-api
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
