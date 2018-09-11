@@ -2,6 +2,8 @@ FROM golang:1.11 as builder
 
 WORKDIR /go/src/app/
 COPY app/ /go/src/app/
+RUN go get -u github.com/golang/dep/cmd/dep
+RUN dep ensure
 RUN CGO_ENABLED=0 GOOS=linux go build -o app
 
 

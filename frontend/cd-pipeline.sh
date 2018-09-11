@@ -14,7 +14,7 @@ fi
 
 docker build -t $APPNAME --file=docker/Dockerfile .
 
-IMAGEID=$(docker images | grep todo-rest-api | awk '{print $3}'| tail -n 1)
+IMAGEID=$(docker images | grep $APPNAME | awk '{print $3}'| tail -n 1)
 
 
 docker tag $IMAGEID $ACCOUNTNAME/$APPNAME
