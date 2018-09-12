@@ -4,14 +4,13 @@ metadata:
   name: frontend-external-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   rules:
-  - host: bwoodhouse.com
+  - host: minikube.info
   - http:
       paths:
       - path: /
         backend:
           serviceName: react-frontend-service
-          servicePort: 80
+          servicePort: 443

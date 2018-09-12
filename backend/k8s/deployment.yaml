@@ -18,7 +18,7 @@ spec:
       - name: todo-rest-api
         image: bwoodhouse322/todo-rest-api:latest
         ports:
-          - containerPort: 8080
+          - containerPort: 443
         resources:
           requests:
             memory: "64Mi"

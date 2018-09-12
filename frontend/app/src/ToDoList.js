@@ -11,9 +11,12 @@ class ToDoList extends Component {
   }
 
   componentDidMount(){
-    axios('http://todo-rest-api-service.default.svc.cluster.local./todos').then(response => {
+    let url = "https://todo-rest-api-service.default.cluster.local/todos"
+    fetch(url).then(response => response.json()).then(response => {
+
+      console.log(response)
       
-       let todos = response.data.map( (todo,index) => {
+       let todos = response.map( (todo,index) => {
 
         let duedate = new Date(todo.datedue);
 
@@ -58,7 +61,7 @@ class ToDoList extends Component {
 
       <div className="Container">
       <header className="ToDoList-header">
-        <h1 clasName="ToDoList-title"> ToDo List</h1>
+        <h1 className="ToDoList-title"> ToDo List</h1>
       </header>
       
       <div className="ToDoList-toDoContainers">
