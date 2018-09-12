@@ -1,5 +1,5 @@
 ## TODO
-- add ingress to frontend to view the app
+- Expose API Externally
 - refactor frontend docker image
 - refactor CI pipeline files and k8s deploy config
 
