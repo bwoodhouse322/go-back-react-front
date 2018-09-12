@@ -1,7 +1,7 @@
 ## TODO
 - Expose API Externally
-- refactor frontend docker image
-- refactor CI pipeline files and k8s deploy config
+- Refactor frontend docker image
+- Refactor CI pipeline files and k8s deploy config
 
 
 ###Further points
