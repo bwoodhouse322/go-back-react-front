@@ -1,30 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 #
 ACCOUNTNAME=bwoodhouse322
 APPNAME=todo-rest-api
-minikube status
 
-#If cluster isn't running, start cluster
-if [ $? -eq 1 ] ;
-then
-    minikube start  
+if [[../ci-functions/docker-build-push.sh -x &&  ../ci-functions/deploy-app.sh -x ]] ; then
+
+    ../ci-functions/docker-build-push.sh "${ACCOUNTNAME}" "${APPNAME}"
+    ../ci-functions/deploy-app.sh
+else
+    echo "Make sure ci-functions are all made executable" 
+    exit 1
 fi
-
-
-docker build -t $APPNAME --file=docker/Dockerfile .
-
-IMAGEID=$(docker images | grep $APPNAME| awk '{print $3}'| head -n 1)
-
-
-docker tag $IMAGEID $ACCOUNTNAME/$APPNAME
-
-docker push $ACCOUNTNAME/$APPNAME
-
-kubectl config use-context minikube
-
-kubectl delete -f k8s/deployment.yaml
-kubectl delete -f k8s/service.yaml
-
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
